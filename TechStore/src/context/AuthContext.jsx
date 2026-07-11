@@ -3,9 +3,9 @@ import {loginRequest, registerRequest, decodeToken} from '../services/authServic
 
 const AuthContext = createContext(null);
 export function AuthProvider({children}){
-    const[token, setToken] = useState(()=> localStorage.getItem("sparky_token"));
+    const[token, setToken] = useState(()=> localStorage.getItem("Tech_token"));
     const[user, setUser] = useState(()=> {
-        const stored = localStorage.getItem("sparky_user");
+        const stored = localStorage.getItem("Tech_user");
         return stored ? JSON.parse(stored):null;
     });
 
@@ -13,16 +13,16 @@ export function AuthProvider({children}){
     const[error, setError]= useState(null);
     useEffect(()=>{
         if(token){
-            localStorage.setItem("sparky_token", token);
+            localStorage.setItem("Tech_token", token);
         }else{
-            localStorage.removeItem("sparky_token");
+            localStorage.removeItem("Tech_token");
         }
     },[token]);
     useEffect(()=>{
         if(user){
-            localStorage.setItem("sparky_user", JSON.stringify(user));
+            localStorage.setItem("Tech_user", JSON.stringify(user));
         }else{
-            localStorage.removeItem("sparky_user");
+            localStorage.removeItem("Tech_user");
         }
     },[user]);
 
